@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0d1117">
+<title>FotoPuente</title>
+<link rel="stylesheet" href="/web/telefono.css">
+</head>
+<body>
+
+<header class="cabecera">
+  <div class="marca">
+    <svg class="logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="2.5" y="6" width="19" height="14" rx="3"></rect>
+      <circle cx="12" cy="13" r="3.6"></circle>
+      <path d="M8 6l1.4-2.2h5.2L16 6"></path>
+    </svg>
+    <div>
+      <h1>FotoPuente</h1>
+      <p class="destino" id="destino">conectando…</p>
+    </div>
+  </div>
+  <span class="senal" id="senal" title="Estado de la conexión"></span>
+</header>
+
+<main>
+
+  <!-- Paso 1: elegir -->
+  <section class="tarjeta" id="paso-elegir">
+    <label class="boton-grande" id="label-elegir" for="entrada">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 5v14M5 12h14"></path>
+      </svg>
+      <span>Elegir fotos y vídeos</span>
+    </label>
+    <input type="file" id="entrada" multiple accept="image/*,video/*" hidden>
+
+    <div class="consejo">
+      <strong>Envía en tandas de unas 40.</strong>
+      El iPhone no puede preparar cientos de fotos de golpe; si eliges
+      demasiadas, Safari se queda sin memoria y no pasa nada. Como FotoPuente
+      recuerda lo enviado, ve mandando grupos: no se repite ninguna. Los vídeos
+      pesan mucho más, así que envíalos de pocos en pocos.
+    </div>
+
+    <p class="aviso oculto" id="aviso-seleccion">
+      Parece que eran demasiadas para el iPhone y no se ha podido abrir ninguna.
+      Prueba a elegir menos (unas 40 fotos, o pocos vídeos) y repite. Lo que ya
+      hayas enviado no se volverá a mandar.
+    </p>
+
+    <p class="nota-formato" id="nota-formato"></p>
+  </section>
+
+  <!-- Paso 2: resumen del analisis -->
+  <section class="tarjeta oculto" id="paso-resumen">
+    <div class="analizando" id="analizando">
+      <div class="girador"></div>
+      <p>Comprobando qué falta por enviar…</p>
+    </div>
+    <div class="oculto" id="resumen">
+      <div class="cifras">
+        <div class="cifra">
+          <strong id="n-nuevos">0</strong>
+          <span>por enviar</span>
+        </div>
+        <div class="cifra apagada">
+          <strong id="n-repes">0</strong>
+          <span>ya estaban</span>
+        </div>
+        <div class="cifra">
+          <strong id="n-peso">0</strong>
+          <span>a transferir</span>
+        </div>
+      </div>
+      <button class="boton-grande" id="btn-enviar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 19V5M5 12l7-7 7 7"></path>
+        </svg>
+        <span>Enviar al PC</span>
+      </button>
+      <button class="boton-plano" id="btn-otra">Elegir otras</button>
+      <p class="aviso" id="aviso-nada">Nada nuevo que enviar: ya está todo en el PC.</p>
+    </div>
+  </section>
+
+  <!-- Paso 3: transferencia -->
+  <section class="tarjeta oculto" id="paso-envio">
+    <div class="progreso-cab">
+      <span id="progreso-txt">0 / 0</span>
+      <span id="progreso-pct">0 %</span>
+    </div>
+    <div class="barra"><div class="relleno" id="barra"></div></div>
+    <div class="metricas">
+      <span id="m-velocidad">— MB/s</span>
+      <span id="m-restante">—</span>
+      <span id="m-enviado">0 B</span>
+    </div>
+
+    <div class="acciones">
+      <button class="boton-plano" id="btn-pausa">Pausar</button>
+      <button class="boton-plano peligro" id="btn-cancelar">Cancelar</button>
+    </div>
+
+    <p class="pista pequena">
+      Mantén esta pantalla abierta: la pantalla no se apagará mientras dure la
+      transferencia. Si aun así se interrumpe, al volver continúa sola y no se
+      repite nada.
+    </p>
+
+    <ul class="registro" id="registro"></ul>
+  </section>
+
+  <!-- Paso 4: final -->
+  <section class="tarjeta oculto" id="paso-final">
+    <div class="final-icono" id="final-icono">✓</div>
+    <h2 id="final-titulo">Transferencia completada</h2>
+    <p class="final-detalle" id="final-detalle"></p>
+    <button class="boton-grande" id="btn-mas">
+      <span>Enviar más fotos</span>
+    </button>
+    <button class="boton-plano oculto" id="btn-reintentar">Reintentar los fallidos</button>
+  </section>
+
+</main>
+
+<script src="/web/telefono.js"></script>
+</body>
+</html>

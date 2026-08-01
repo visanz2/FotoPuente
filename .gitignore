@@ -1,0 +1,24 @@
+# --- NO SUBIR: datos sensibles y locales ---
+
+# Configuracion con el codigo de acceso. Se regenera sola al arrancar.
+config.json
+
+# Indice de duplicados y, sobre todo, el certificado con su CLAVE PRIVADA.
+# Todo esto se regenera solo; nunca debe publicarse.
+datos/
+
+# Carpeta de fotos, por si algun dia el destino cae dentro del proyecto.
+Pictures/
+FotoPuente-fotos/
+
+# --- Ruido ---
+
+# Cache de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini

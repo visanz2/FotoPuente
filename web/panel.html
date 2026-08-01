@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FotoPuente · Panel</title>
+<link rel="stylesheet" href="/web/panel.css">
+</head>
+<body>
+
+<header>
+  <h1>
+    <svg class="logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="2.5" y="6" width="19" height="14" rx="3"></rect>
+      <circle cx="12" cy="13" r="3.6"></circle>
+      <path d="M8 6l1.4-2.2h5.2L16 6"></path>
+    </svg>
+    FotoPuente
+  </h1>
+  <span class="version" id="version"></span>
+</header>
+
+<main>
+
+  <div class="columnas">
+
+    <!-- Conexion -->
+    <section class="tarjeta destacada">
+      <h2>Escanea con el iPhone</h2>
+      <div class="qr-caja">
+        <img id="qr" alt="Código QR de acceso" width="290" height="290">
+      </div>
+
+      <div class="campo-ip" id="campo-ip">
+        <label for="ip">Dirección de red</label>
+        <select id="ip"></select>
+      </div>
+
+      <div class="url-caja">
+        <code id="url">…</code>
+        <button class="mini" id="btn-copiar" title="Copiar enlace">Copiar</button>
+      </div>
+
+      <p class="nota">
+        Abre la <strong>Cámara</strong> del iPhone, apunta al QR y toca el aviso.
+        El iPhone debe estar en la misma red WiFi que este PC.
+      </p>
+
+      <p class="nota nota-tls oculto" id="nota-tls">
+        <strong>La primera vez</strong> Safari dirá que la conexión no es
+        privada. Es normal: el certificado lo ha creado este PC, no una empresa
+        externa. Toca <em>Mostrar detalles</em> → <em>visitar este sitio web</em>.
+        Solo se pregunta una vez por dispositivo.
+      </p>
+    </section>
+
+    <!-- Ajustes y estado -->
+    <div class="pila">
+
+      <section class="tarjeta">
+        <h2>Dónde se guardan</h2>
+        <div class="fila-carpeta">
+          <input type="text" id="carpeta" spellcheck="false"
+                 placeholder="C:\Fotos  o  \\MI-PC\Fotos">
+          <button class="mini" id="btn-examinar">Examinar…</button>
+        </div>
+        <div class="fila-organizar">
+          <label for="organizar">Organizar en subcarpetas</label>
+          <select id="organizar">
+            <option value="plano">Todo junto, sin subcarpetas</option>
+            <option value="anio">Por año — 2026\</option>
+            <option value="anio-mes">Por año y mes — 2026\2026-07\</option>
+            <option value="anio-mes-dia">Por año, mes y día</option>
+          </select>
+        </div>
+        <div class="botones">
+          <button class="principal" id="btn-guardar">Guardar cambios</button>
+          <button class="mini" id="btn-abrir">Abrir carpeta</button>
+        </div>
+        <p class="aviso-guardado oculto" id="aviso-guardado"></p>
+      </section>
+
+      <section class="tarjeta">
+        <h2>Formato de las fotos</h2>
+        <div class="opciones-formato" id="opciones-formato">
+          <label class="opcion">
+            <input type="radio" name="formato" value="compatible">
+            <span class="opcion-cuerpo">
+              <span class="opcion-titulo">Compatible (JPEG)</span>
+              <span class="opcion-detalle">
+                Se abre en cualquier PC y programa. El iPhone convierte cada foto,
+                así que ocupan más y entran menos por tanda.
+              </span>
+            </span>
+          </label>
+          <label class="opcion">
+            <input type="radio" name="formato" value="original">
+            <span class="opcion-cuerpo">
+              <span class="opcion-titulo">Originales (HEIC)</span>
+              <span class="opcion-detalle">
+                Mitad de tamaño y calidad original; entran más por tanda. Este PC
+                ya sabe abrirlos. Nota: iOS a veces convierte igual — se ve en la
+                columna «Archivo».
+              </span>
+            </span>
+          </label>
+        </div>
+        <p class="aviso-guardado oculto" id="aviso-formato"></p>
+      </section>
+
+      <section class="tarjeta">
+        <h2>Esta sesión</h2>
+        <div class="cifras">
+          <div class="cifra"><strong id="c-recibidos">0</strong><span>recibidas</span></div>
+          <div class="cifra"><strong id="c-bytes">0 B</strong><span>transferido</span></div>
+          <div class="cifra"><strong id="c-dup">0</strong><span>duplicadas</span></div>
+          <div class="cifra"><strong id="c-err">0</strong><span>errores</span></div>
+        </div>
+        <p class="linea-extra">
+          <span id="c-historico">—</span> en el histórico ·
+          <span id="c-libre">—</span> libres en el disco
+        </p>
+      </section>
+
+    </div>
+  </div>
+
+  <section class="tarjeta">
+    <div class="cab-registro">
+      <h2>Actividad</h2>
+      <button class="mini sutil" id="btn-olvidar" title="Vuelve a permitir el reenvío de todo">
+        Vaciar histórico de duplicados
+      </button>
+    </div>
+    <table class="registro">
+      <thead>
+        <tr><th>Archivo</th><th>Fecha de la foto</th><th>Tamaño</th><th>Estado</th></tr>
+      </thead>
+      <tbody id="registro">
+        <tr class="vacio"><td colspan="4">Esperando fotos del iPhone…</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+</main>
+
+<script src="/web/panel.js"></script>
+</body>
+</html>
